@@ -1,0 +1,69 @@
+<?php include(PLATFORM_PATH."view/head.html");?>
+
+<div class="main">
+    <?php include(PLATFORM_PATH."view/left.html");?>
+    <div class="right">
+        <ul>
+            <li id="r1" >
+                <div class="r_div"><img src="application/public/images/base1.gif" /><span>位置：</span>充值和消费</div>
+                <div class="add_1 add_2">
+                    <div class="d">充值和消费</div>
+                    <table>
+                        <tbody><tr>
+                            <td width="80px" class="td1">用户名 </td>
+                            <td class="td td1"><?php echo $user['username']?></td>
+                        </tr>
+                        <tr>
+                            <td>姓名 </td>
+                            <td class="td"><?php echo $user['realname']?></td>
+                        </tr>
+                        <tr>
+                            <td>电话 </td>
+                            <td class="td"><?php echo $user['telephone']?></td>
+                        </tr>
+                        <tr>
+                            <td>余额 </td>
+                            <td class="td"><?php echo $user['money']?></td>
+                        </tr>
+                        <tr>
+                            <td>操作 </td>
+                            <td class="td"><a href="#" onclick="showDiv('increase')">充值</a> | <a href="#" onclick="showDiv('reduce')">消费</a> |
+                                <a href="<?php echo FunctionTool::url('back','money','history',array('user_id'=>$user['user_id']))?>">记录查询</a></td>
+                        </tr>
+                        </tbody></table>
+
+                <div id="increase" style="display: none">
+                    <form method="post" action="<?php echo FunctionTool::url('back','money','increase')?>">
+                        充值金额<input type="text" name="amount">
+                        <input type="hidden" name="user_id" value="<?php echo $user['user_id']?>">
+                        <input type="submit" class="qr" value="充值">
+                    </form>
+                </div>
+                <div id="reduce" style="display: none">
+                    <form method="post" action="<?php echo FunctionTool::url('back','money','reduce')?>">
+                        套餐<select name="plan_id">
+                        <?php foreach($plans as $id=>$plan) echo "<option value=\"{$id}\">{$plan}</option>";?>
+                    </select>
+                        服务员工<select name="member_id">
+                        <?php foreach($members as $key=>$member) echo '<option value="'.$key.'">'.$member.'</option>';?>
+                    </select>
+                        <br>
+                        <input type="hidden" name="user_id" value="<?php echo $user['user_id']?>">
+                        <input type="submit" class="qr" value="消费">
+                    </form>
+                </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+    function showDiv(id)
+    {
+        document.getElementById("increase").style.display = "none";
+        document.getElementById("reduce").style.display = "none";
+        document.getElementById(id).style.display = "";
+    }
+</script>
+
+<?php include(PLATFORM_PATH."view/foot.html");?>

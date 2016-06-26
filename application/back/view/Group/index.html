@@ -1,0 +1,38 @@
+<?php include(PLATFORM_PATH."view/head.html");?>
+
+<div class="main">
+    <?php include(PLATFORM_PATH."view/left.html");?>
+    <div class="right">
+        <ul>
+            <li id="r1" >
+                <div class="r_div"><img src="application/public/images/base1.gif" /><span>位置：</span>部门列表
+                    <a href="<?php echo FunctionTool::url('back','group','add')?>"><span class="span1">[添加部门]</span></a></div>
+                <div class="r_div1">
+                    <table>
+                    <tr class="tr1"><th>ID</th><th>名称</th><th>操作</th></tr>
+                    <?php foreach($rows as $row):?>
+                    <tr>
+                        <td><?php echo $row['group_id']?></td>
+                        <td><?php echo $row['name']?></td>
+
+                        <td><a href="<?php echo FunctionTool::url('back','group','edit',array('group_id'=>$row['group_id']))?>">编辑</a> |
+                            <a href="#" onclick="deleteGroup(<?php echo $row['group_id'] ?>)">删除</a>
+                        </td>
+                    </tr>
+                    <?php endforeach;?>
+                    </table>
+                    <?php echo $page_html;?>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+    function deleteGroup(group_id){
+        if(confirm("确定要删除该部门吗？")){
+            window.location.href = "?c=group&a=del&group_id="+group_id;
+        }
+    }
+</script>
+
+<?php include(PLATFORM_PATH."view/foot.html");?>

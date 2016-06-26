@@ -1,0 +1,44 @@
+<?php include(PLATFORM_PATH."view/head.html");?>
+
+<div class="main">
+    <?php include(PLATFORM_PATH."view/left.html");?>
+    <div class="right">
+        <ul>
+            <li id="r1" >
+                <div class="r_div"><img src="application/public/images/base1.gif" /><span>位置：</span>编辑
+                    <a href="<?php echo FunctionTool::url('back','member','index')?>"><span class="span1">[返回员工列表]</span></a></div>
+                <div class="add_1 add_2">
+                    <div class="d">编辑</div>
+                    <form method="post">
+                        <ul>
+                            <li> 用户名 
+                                <input type="text" name="username" value="<?php echo $row['username']?>" />
+                            </li>
+                            <li>姓名 
+                                <input type="text" name="realname" value="<?php echo $row['realname']?>" />
+                            </li>
+
+                            <li>部门
+                                <select name="group_id">
+                                    <?php foreach($groups as $id=>$group){
+                                    if($id == $row['group_id']) echo '<option value="'.$id.'" selected>'.$group.'</option>';
+                                    else echo '<option value="'.$id.'">'.$group.'</option>';
+                                    }?>
+                                </select>
+                            </li>
+                            <li>是否管理员
+                                <input type="radio" name="is_admin" <?php if($row['is_admin'] == 1) echo 'checked';?> value="1">是
+                                <input type="radio" name="is_admin" <?php if($row['is_admin'] == 0) echo 'checked';?> value="0">否
+                            </li>
+
+
+                        </ul>
+                        <input type="submit" class="qr" value="提交">
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<?php include(PLATFORM_PATH."view/foot.html");?>

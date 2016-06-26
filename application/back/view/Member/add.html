@@ -1,0 +1,41 @@
+<?php include(PLATFORM_PATH."view/head.html");?>
+
+<div class="main">
+    <?php include(PLATFORM_PATH."view/left.html");?>
+    <div class="right">
+        <ul>
+            <li id="r1" >
+                <div class="r_div"><img src="application/public/images/base1.gif" /><span>位置：</span>添加员工
+                    <a href="<?php echo FunctionTool::url('back','member','index')?>"><span class="span1">[返回员工列表]</span></a></div>
+                <div class="add_1 add_2">
+                    <div class="d">添加员工</div>
+                    <form method="post">
+                        <ul>
+                            <li> 用户名 
+                                <input type="text" placeholder="请输入用户名" name="username">
+                            </li>
+                            <li>姓名 
+                                <input type="text" placeholder="请输入姓名" name="realname">
+                            </li>
+                            <li>密码 
+                                <input type="password" placeholder="请输入密码" name="password">
+                            </li>
+                            <li>部门
+                                 <select name="group_id">
+                                     <?php foreach($groups as $id=>$group) echo '<option value="'.$id.'">'.$group.'</option>';?>
+                                     </select>
+                            </li>
+                            <li>是否管理员
+                                <input type="radio" name="is_admin" value="1">是
+                                <input type="radio" name="is_admin" value="0">否
+                            </li>
+                        </ul>
+                        <input type="submit" class="qr" value="提交">
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<?php include(PLATFORM_PATH."view/foot.html");?>

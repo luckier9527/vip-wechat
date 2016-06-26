@@ -1,0 +1,61 @@
+<?php include(PLATFORM_PATH."view/head.html");?>
+
+<div class="main">
+    <?php include(PLATFORM_PATH."view/left.html");?>
+    <div class="right">
+        <ul>
+            <li id="r1" >
+                <div class="r_div"><img src="application/public/images/base1.gif" /><span>位置：</span>账户列表
+                    <a href="<?php echo FunctionTool::url('back','account','add')?>"><span class="span1">[添加账户]</span></a></div>
+                <div class="r_div1">
+                    <form method="get">
+                        <input type="hidden" name="p" value="<?php echo PLATFORM?>">
+                        <input type="hidden" name="c" value="<?php echo CONTROLLER?>">
+                        <input type="hidden" name="a" value="<?php echo ACTION?>">
+
+                        姓名<input type="text" name="Filter[realname]">
+                        电话<input type="text" name="Filter[telephone]">
+
+
+                        <input type="submit" value="查询">
+                    </form>
+                    <table>
+                        <tr class="tr1">
+                            <td width="50">ID</td>
+                            <td width="100">用户名</td>
+                            <td width="100">姓名</td>
+                            <td width="150">电话</td>
+                            <td width="150">余额</td>
+                            <td width="100">VIP</td>
+                            <td width="300">操作</td>
+                        </tr>
+                        <?php foreach($rows as $row):?>
+                        <tr>
+                            <td><?php echo $row['user_id']?></td>
+                            <td><?php echo $row['username']?></td>
+                            <td><?php echo $row['realname']?></td>
+                            <td><?php echo $row['telephone']?></td>
+                            <td><?php echo $row['money']?></td>
+                            <td><?php echo $row['is_vip']?></td>
+                            <td><a href="<?php echo FunctionTool::url('back','account','edit',array('user_id'=>$row['user_id']))?>">编辑</a> |
+                                <a href="#" onclick="deleteUser(<?php echo $row['user_id']?>)">删除</a> |
+                                <a href="<?php echo FunctionTool::url('back','money','index',array('user_id'=>$row['user_id']))?>" >充值和消费</a>
+                            </td>
+                        </tr>
+                        <?php endforeach;?>
+                    </table>
+                    <div class="pages"> <?php echo $page_html;?></div>
+                </div>
+            </li>
+            </ul>
+        </div>
+    </div>
+<script>
+    function deleteUser(user_id){
+        if(confirm("确定要删除该用户吗？")){
+            window.location.href = "<?php echo FunctionTool::url('back','account','del')?>&user_id="+user_id;
+        }
+    }
+</script>
+
+<?php include(PLATFORM_PATH."view/foot.html");?>

@@ -1,0 +1,26 @@
+<?php include(PLATFORM_PATH."view/head.html");?>
+
+<div class="main">
+    <?php include(PLATFORM_PATH."view/left.html");?>
+    <div class="right">
+        <ul>
+            <li id="r1" >
+                <div class="r_div"><img src="application/public/images/base1.gif" /><span>位置：</span>编辑部门
+                    <a href="<?php echo FunctionTool::url('back','group','index')?>"><span class="span1">[返回]</span></a></div>
+                <div class="add_1 add_2">
+                    <div class="d">编辑部门</div>
+                    <form method="post">
+                        <ul>
+                            <li> 名称<input type="text" name="name" value="<?php echo $row['name']?>" />
+                            </li>
+                        </ul>
+                        <input type="hidden" name="group_id" value="<?php echo $row['group_id']?>">
+                        <input type="submit" class="qr" value="提交">
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<?php include(PLATFORM_PATH."view/foot.html");?>

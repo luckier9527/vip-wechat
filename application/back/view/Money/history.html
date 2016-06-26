@@ -1,0 +1,31 @@
+<?php include(PLATFORM_PATH."view/head.html");?>
+
+<div class="main">
+    <?php include(PLATFORM_PATH."view/left.html");?>
+    <div class="right">
+        <ul>
+            <li id="r1" >
+                <div class="r_div"><img src="application/public/images/base1.gif" /><span>位置：</span><?php echo $user['realname']?> 充值和消费记录
+                    <a href="<?php echo FunctionTool::url('back','money','index',array('user_id'=>$user['user_id']))?>"><span class="span1">[返回用户信息]</span></a></div>
+                <div class="r_div1">
+                    <table >
+                        <tr class="tr1"><th>流水号</th><th>类型</th><th>金额</th><th>余额</th><th>项目</th><th>时间</th></tr>
+                        <?php foreach($rows as $row):?>
+                        <tr>
+                            <td><?php echo $row['history_id']?></td>
+                            <td><?php echo $row['type']=='increase'?'充值':'消费' ?></td>
+                            <td><?php echo $row['amount']?></td>
+                            <td><?php echo $row['remainder']?></td>
+                            <td><?php echo $row['content']?></td>
+                            <td><?php echo date('Y-m-d H:i:s',$row['time'])?></td>
+                         </tr>
+                        <?php endforeach;?>
+                    </table>
+                    <?php echo $page_html;?>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<?php include(PLATFORM_PATH."view/foot.html");?>

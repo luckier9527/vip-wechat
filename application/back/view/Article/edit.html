@@ -1,0 +1,50 @@
+<?php include(PLATFORM_PATH."view/head.html");?>
+
+<!-- 样式文件 -->
+<link rel="stylesheet" href="application/public/umeditor/themes/default/css/umeditor.css">
+<!-- 引用jquery -->
+<script src="application/public/umeditor/third-party/jquery.min.js"></script>
+<!-- 配置文件 -->
+<script type="text/javascript" src="application/public/umeditor/umeditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="application/public/umeditor/umeditor.js"></script>
+<!-- 语言包文件 -->
+<script type="text/javascript" src="application/public/umeditor/lang/zh-cn/zh-cn.js"></script>
+<!-- 实例化编辑器代码 -->
+<script type="text/javascript">
+    $(function(){
+        window.um = UM.getEditor('container', {});
+    });
+</script>
+
+<div class="main">
+    <?php include(PLATFORM_PATH."view/left.html");?>
+    <div class="right">
+        <ul>
+            <li id="r1" >
+                <div class="r_div"><img src="application/public/images/base1.gif" /><span>位置：</span>编辑活动
+                    <a href="<?php echo FunctionTool::url('back','article','index')?>"><span class="span1">[返回]</span></a></div>
+                <div class="add_1 add_2">
+                    <div class="d">编辑活动</div>
+                    <form method="post">
+                        <ul>
+                            <li> 标题<input type="text" name="title" value="<?php echo $row['title']?>" />
+                            </li>
+                            <li>内容
+                                <!-- 加载编辑器的容器 -->
+                                <script id="container" name="content" type="text/plain" style="width:600px;height:200px;"><?php echo $row['content']?></script>
+                            </li>
+                            <li>开始时间<input type="date" name="start" value="<?php echo $row['start']?>" />
+                            </li>
+                            <li>开始时间<input type="date" name="end" value="<?php echo $row['end']?>" />
+                            </li>
+                        </ul>
+                        <input type="submit" class="qr" value="提交">
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<?php include(PLATFORM_PATH."view/foot.html");?>

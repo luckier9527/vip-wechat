@@ -1,0 +1,35 @@
+<?php include(PLATFORM_PATH."view/head.html");?>
+
+<div class="main">
+    <?php include(PLATFORM_PATH."view/left.html");?>
+    <div class="right">
+        <ul>
+            <li id="r1" >
+                <div class="r_div"><img src="application/public/images/base1.gif" /><span>位置：</span>编辑账户
+                    <a href="<?php echo FunctionTool::url('back','account','index')?>"><span class="span1">[返回账户列表]</span></a></div>
+                <div class="add_1">
+                    <div class="d">账户编辑</div>
+                    <form method="post">
+                        <ul>
+                            <li> 用户名 
+                                <input type="text" name="username" value="<?php echo $row['username']?>" />
+                            </li>
+                            <li>姓名 
+                                <input type="text" name="realname" value="<?php echo $row['realname']?>" />
+                            </li>
+                            <li>电话 
+                                <input type="text" name="telephone" value="<?php echo $row['telephone']?>" />
+                            </li>
+                            <li>备注
+                                <textarea name="remark" rows="3" cols="20"><?php echo $row['remark']?></textarea>
+                            </li>
+                        </ul>
+                        <input type="submit" class="qr" value="提交">
+                    </form>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<?php include(PLATFORM_PATH."view/foot.html");?>
